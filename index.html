@@ -269,7 +269,7 @@ footer a { margin: 0 8px; }
     <details><summary>Funciona no iPhone?</summary><p>Ainda não. O teste é só para Android pelo Google Play.</p></details>
     <details><summary>Precisa de internet?</summary><p>A campanha funciona offline. Os modos online (PvP e Coop) estão em teste e dependem do servidor.</p></details>
     <details><summary>Qual a classificação?</summary><p>14 anos no Brasil (violência de fantasia e terror leve, interação online).</p></details>
-    <details><summary>Achei um bug, e agora?</summary><p>Mande pelo Discord (em breve) ou pelo e-mail <a href="mailto:arreche7763@gmail.com">arreche7763@gmail.com</a>.</p></details>
+    <details><summary>Achei um bug, e agora?</summary><p>Mande no canal #bugs do <a href="https://discord.gg/x7ptGxUaMz">Discord</a> ou pelo e-mail <a href="mailto:arreche7763@gmail.com">arreche7763@gmail.com</a>.</p></details>
   </div>
 </section>
 
@@ -336,7 +336,7 @@ document.getElementById("showAll").onclick = (e) => {
   z.innerHTML = ""; ZOMBIES.forEach(x => z.appendChild(card("zombies", x))); e.target.remove();
 };
 // links da comunidade (preenchidos quando o Discord e o TikTok existirem)
-const LINKS = { discord: "", tiktok: "" };
+const LINKS = { discord: "https://discord.gg/x7ptGxUaMz", tiktok: "" };
 for (const [k, url] of Object.entries(LINKS)) {
   const b = document.getElementById(k + "Btn");
   if (url) { b.href = url; b.textContent = k === "discord" ? "Entrar no Discord" : "Seguir no TikTok"; b.classList.remove("soon"); b.target = "_blank"; }
