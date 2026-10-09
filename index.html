@@ -336,7 +336,7 @@ document.getElementById("showAll").onclick = (e) => {
   z.innerHTML = ""; ZOMBIES.forEach(x => z.appendChild(card("zombies", x))); e.target.remove();
 };
 // links da comunidade (preenchidos quando o Discord e o TikTok existirem)
-const LINKS = { discord: "https://discord.gg/x7ptGxUaMz", tiktok: "" };
+const LINKS = { discord: "https://discord.gg/x7ptGxUaMz", tiktok: "https://www.tiktok.com/@deadsignal.jogo" };
 for (const [k, url] of Object.entries(LINKS)) {
   const b = document.getElementById(k + "Btn");
   if (url) { b.href = url; b.textContent = k === "discord" ? "Entrar no Discord" : "Seguir no TikTok"; b.classList.remove("soon"); b.target = "_blank"; }
