@@ -33,6 +33,7 @@ h2 { font-size: clamp(30px, 6vw, 46px); margin: 0 0 8px; text-align: center; col
 .sub { text-align: center; color: var(--dim); margin: 0 auto 28px; max-width: 620px; }
 .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
 section { padding: 64px 0; }
+header.hero + section { padding-top: 28px; }   /* "Como se joga" logo abaixo do topo, sem faixa vazia */
 
 /* botões no estilo do jogo: chapado, contorno escuro e degrau embaixo */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; color: #fff;
@@ -46,7 +47,7 @@ section { padding: 64px 0; }
 .btn small { font: 800 13px Nunito, sans-serif; -webkit-text-stroke: 0; text-shadow: none; opacity: .9; display: block; }
 
 /* topo */
-header.hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 28px 0 56px;
+header.hero { position: relative; display: grid; place-items: center; padding: 40px 0 28px;
   background: linear-gradient(180deg, rgba(27,20,48,.35), rgba(27,20,48,.92) 85%), url(img/bg.webp) center top / cover; }
 .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 36px; align-items: center; }
 .logo { width: min(520px, 100%); filter: drop-shadow(0 8px 0 rgba(0,0,0,.35)); border-radius: 22px; border: 4px solid var(--ink); }
