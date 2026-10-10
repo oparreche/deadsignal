@@ -93,6 +93,28 @@ header.hero { position: relative; display: grid; place-items: center; padding: 4
 .boss-tag { display: inline-block; background: var(--purple); border: 2px solid var(--ink); border-radius: 8px; font-family: "Lilita One"; font-size: 12px; padding: 0 6px; color: #fff; }
 .more { text-align: center; margin-top: 22px; }
 
+/* história */
+.lore { background: radial-gradient(ellipse at 50% 0%, #3a1f4f 0%, var(--bg) 70%); position: relative; overflow: hidden; }
+.lore::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .07;
+  background: repeating-linear-gradient(0deg, #fff 0 1px, transparent 1px 4px); }
+.lore .wrap { position: relative; }
+.kicker { text-align: center; font-family: "Lilita One"; color: var(--yellow); letter-spacing: 2px; margin: 0 0 6px; font-size: 18px; }
+.prologue { max-width: 760px; margin: 0 auto 36px; background: var(--panel); border: 4px solid var(--ink); border-radius: 22px;
+  box-shadow: 0 10px 0 var(--ink); padding: 26px 28px; font-size: 18px; line-height: 1.6; }
+.prologue p { margin: 0 0 14px; } .prologue p:last-child { margin: 0; color: var(--yellow); }
+.acts { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; }
+.act { background: var(--bg2); border: 4px solid var(--ink); border-radius: 18px; padding: 14px 14px 16px; box-shadow: 0 6px 0 var(--ink); }
+.act b { display: block; font-family: "Lilita One"; font-weight: 400; color: var(--yellow); font-size: 14px; letter-spacing: 1px; }
+.act h4 { margin: 2px 0 6px; font-family: "Lilita One"; font-weight: 400; font-size: 21px; color: #fff; }
+.act p { margin: 0; font-size: 14px; line-height: 1.4; color: var(--dim); }
+.act.secret { background: repeating-linear-gradient(135deg, var(--bg2) 0 12px, #241a3d 12px 24px); }
+.act.secret p { font-style: italic; }
+.cast { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 30px; }
+.cast .card { padding: 18px 20px 20px; }
+.cast h3 { margin: 0 0 6px; color: var(--yellow); font-size: 24px; }
+.cast p { margin: 0; }
+@media (max-width: 760px) { .cast { grid-template-columns: 1fr; } .prologue { padding: 20px 18px; font-size: 17px; } }
+
 /* capturas */
 .shots { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 4px 20px; }
 .shots img { width: 220px; flex: 0 0 auto; scroll-snap-align: center; border: 4px solid var(--ink); border-radius: 20px; box-shadow: 0 8px 0 var(--ink); }
@@ -166,7 +188,7 @@ footer a { margin: 0 8px; }
     <div class="features">
       <article class="card">
         <video src="video/fusao.mp4" muted loop playsinline autoplay preload="none" aria-label="Fusão de peças"></video>
-        <div class="body"><h3>Invoque e funda</h3><p>Cada INVOCAR traz um investigador aleatório. Junte dois iguais e ele sobe de nível, ganhando um Traço novo.</p></div>
+        <div class="body"><h3>Invoque e funda</h3><p>Cada INVOCAR traz um investigador aleatório. Junte dois iguais e eles viram um investigador surpresa do nível acima. No nível máximo, jogue no caldeirão e crie um SUPREMO.</p></div>
       </article>
       <article class="card">
         <video src="video/horda.mp4" muted loop playsinline autoplay preload="none" aria-label="Horda de zumbis"></video>
@@ -182,6 +204,36 @@ footer a { margin: 0 8px; }
       <div class="stat"><div class="num">40</div><span>investigadores</span></div>
       <div class="stat"><div class="num">57</div><span>tipos de mortos</span></div>
       <div class="stat"><div class="num">10</div><span>chefes</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="lore" id="historia">
+  <div class="wrap">
+    <p class="kicker">PORTO SERENO, 3H33 DA MANHÃ</p>
+    <h2>A História</h2>
+    <p class="sub">Uma cidade inteira esqueceu quem era. Os mortos também.</p>
+    <div class="prologue">
+      <p>Às 3h33 de uma terça-feira, todas as rádios de Porto Sereno tocaram o mesmo chiado. Quem ouviu esqueceu o próprio nome. Os mortos do cemitério também ouviram, e levantaram para procurar o que perderam.</p>
+      <p>Nem todo mundo estava ouvindo. Um punhado de gente estranha (uma costureira, um operador de rádio, um cartógrafo, um encapuzado que acende fósforos de funeral) se juntou num velho escritório sobre a funerária. Eles se chamam de <b>Investigadores do Morto</b>.</p>
+      <p>Os mortos não estão mortos. Só esqueceram quem eram. E cada memória devolvida enfraquece o Sinal.</p>
+    </div>
+    <div class="acts">
+      <div class="act"><b>ATO 1</b><h4>O chiado</h4><p>O cemitério acorda primeiro. Uma noiva procura um noivo de quem ninguém lembra.</p></div>
+      <div class="act"><b>ATO 2</b><h4>A fita do Experimento 7</h4><p>No Laboratório Municipal, alguém tentou gravar lembranças em fita magnética.</p></div>
+      <div class="act"><b>ATO 3</b><h4>A hora parada</h4><p>Todos os relógios marcam 3h33. No alto da torre, o Relojoeiro segura os ponteiros.</p></div>
+      <div class="act"><b>ATO 4</b><h4>A origem</h4><p>A velha Rádio Porto Sereno, fora do ar há trinta anos, voltou a transmitir. Do estúdio, uma Voz chama os mortos.</p></div>
+      <div class="act"><b>ATO 5</b><h4>Ecos</h4><p>O transmissor caiu, mas o Sinal ficou preso nos lugares onde a cidade mais chorou.</p></div>
+      <div class="act"><b>ATO 6</b><h4>Subterrâneo</h4><p>Os túneis do metrô são cabos de uma antena gigante. O último expresso nunca parou.</p></div>
+      <div class="act"><b>ATO 7</b><h4>O Espetáculo</h4><p>A noite virou programa de auditório. A plateia é toda de mortos.</p></div>
+      <div class="act"><b>ATO 8</b><h4>Maré Morta</h4><p>O mar leva o Sinal ao porto. No fundo da baía, algo enorme passou trinta anos ouvindo.</p></div>
+      <div class="act secret"><b>ATO 9</b><h4>Paciente Zero</h4><p>As fichas do hospital revelam quem é a Voz. Jogue para descobrir.</p></div>
+      <div class="act secret"><b>ATO 10</b><h4>Silêncio</h4><p>Para calar o Sinal, desligar a rádio não basta.</p></div>
+    </div>
+    <div class="cast">
+      <article class="card"><h3>Os Investigadores do Morto</h3><p>40 especialistas no sobrenatural. Alguns você recruta com Fragmentos, outros vencendo atos, e alguns só voltam a ser gente quando você domina o morto certo.</p></article>
+      <article class="card"><h3>Os Mortos</h3><p>Motoboys, turistas, palhaços, bibliotecárias: gente comum que esqueceu o próprio nome. Cada um traz um truque, e cada memória devolvida pode trazer alguém de volta.</p></article>
+      <article class="card"><h3>A Voz</h3><p>Ninguém sabe quem fala no microfone da rádio abandonada. Só que, quando ela chama, a cidade inteira obedece.</p></article>
     </div>
   </div>
 </section>
