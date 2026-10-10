@@ -174,14 +174,14 @@ footer a { margin: 0 8px; }
       </article>
       <article class="card">
         <video src="video/chefe.mp4" muted loop playsinline autoplay preload="none" aria-label="Chefe gigante"></video>
-        <div class="body"><h3>Chefes gigantes</h3><p>A Noiva, o Abatedouro, o Relojoeiro, o Prefeito e a Voz. Cada um quebra as regras do tabuleiro de um jeito diferente.</p></div>
+        <div class="body"><h3>Chefes gigantes</h3><p>Dez chefes, da Noiva e do Prefeito à Matriarca, ao Condutor e ao Leviatã. Cada um quebra as regras do tabuleiro de um jeito diferente.</p></div>
       </article>
     </div>
     <div class="stats">
       <div class="stat"><div class="num">50</div><span>fases em 10 atos</span></div>
-      <div class="stat"><div class="num">10</div><span>investigadores</span></div>
-      <div class="stat"><div class="num">22</div><span>tipos de mortos</span></div>
-      <div class="stat"><div class="num">5</div><span>chefes</span></div>
+      <div class="stat"><div class="num">40</div><span>investigadores</span></div>
+      <div class="stat"><div class="num">57</div><span>tipos de mortos</span></div>
+      <div class="stat"><div class="num">10</div><span>chefes</span></div>
     </div>
   </div>
 </section>
@@ -199,7 +199,7 @@ footer a { margin: 0 8px; }
     <h2>Os Mortos</h2>
     <p class="sub">Eles não estão mortos, só esqueceram quem eram. E cada um tem um truque.</p>
     <div class="roster" id="zombies"></div>
-    <div class="more"><button class="btn purple" id="showAll" type="button">Ver todos os 27</button></div>
+    <div class="more"><button class="btn purple" id="showAll" type="button">Ver todos os 59</button></div>
   </div>
 </section>
 
@@ -282,45 +282,107 @@ footer a { margin: 0 8px; }
 
 <script>
 const UNITS = [
-  ["fosforo","Fósforo de Funeral","Queima os mortos próximos ao alvo."],
-  ["costureira","Costureira","Costura duas almas: o dano no alvo se repete no zumbi mais próximo."],
-  ["cartografo","Cartógrafo","Desenha mapas no chão que deixam os mortos lentos."],
-  ["operador","Operador","Rádio faz o grupo perto do alvo parar por um instante."],
-  ["mulher_espelho","Mulher do Espelho","Cria um reflexo do alvo que anda para trás ferindo os mortos."],
-  ["neurocirurgiao","Neurocirurgião","Reprograma o cérebro do alvo: ele volta pelo caminho."],
-  ["coveiro","Coveiro","Golpe de pá que empurra e enterra quem está quase sem vida."],
-  ["medium","Médium","Possessão: dano contínuo que pula para o próximo morto."],
-  ["fotografo","Fotógrafo","O flash expõe o alvo: 50% a mais de dano de todas as peças."],
-  ["vigia","Vigia Noturno","Tiro lento e muito forte no morto com mais vida."],
+  ["fosforo", "Fósforo de Funeral", "Queima os mortos próximos ao alvo."],
+  ["costureira", "Costureira", "Costura duas almas: o dano no alvo se repete no zumbi mais próximo."],
+  ["cartografo", "Cartógrafo", "Desenha mapas no chão que deixam os mortos lentos."],
+  ["operador", "Operador", "Rádio faz o grupo perto do alvo parar por um instante."],
+  ["mulher_espelho", "Mulher do Espelho", "Cria um reflexo do alvo que anda para trás ferindo os mortos."],
+  ["neurocirurgiao", "Neurocirurgião", "Reprograma o cérebro do alvo: ele volta pelo caminho."],
+  ["coveiro", "Coveiro", "Golpe de pá que empurra e enterra quem está quase sem vida."],
+  ["medium", "Médium", "Possessão: dano contínuo que pula para o próximo morto."],
+  ["fotografo", "Fotógrafo", "O flash expõe o alvo: 50% a mais de dano de todas as peças."],
+  ["vigia", "Vigia Noturno", "Tiro lento e muito forte no morto com mais vida."],
+  ["eletricista", "Eletricista", "O raio salta do alvo para mais 2 mortos (70% e 50% do dano)."],
+  ["boticaria", "Boticária", "Envenena: dano contínuo por 4 s que acumula até 3 vezes."],
+  ["sineiro", "Sineiro", "A cada 5 ataques toca o sino: atordoa todos os mortos em volta do alvo."],
+  ["astronoma", "Astrônoma", "Mira o morto mais atrás no caminho e derruba um meteoro em área."],
+  ["exorcista", "Exorcista", "Quebra bênçãos e escudos. Dano triplo em fantasmas e mortos voadores."],
+  ["maquinista", "Maquinista", "A cada 6 ataques, um trem fantasma atropela os mortos num trecho do caminho."],
+  ["cronista", "Cronista", "Atrasa o tempo: todos os mortos em volta do alvo ficam bem lentos por 2 s."],
+  ["cartomante", "Cartomante", "Cada golpe tira uma carta: crítico x3, atordoar, lentidão ou expor o alvo."],
+  ["ferreiro", "Ferreiro", "Quebra armaduras: dano dobrado em armadurados e blindados, e tira escudos."],
+  ["faroleira", "Faroleira", "Feixe do farol: atravessa o caminho e fere todos os mortos na linha do alvo."],
+  ["pescador", "Pescador", "Joga a rede: o alvo fica preso (parado) por um instante."],
+  ["apostador", "Apostador", "25% de chance de acertar um golpe crítico de dano triplo."],
+  ["juiza", "Juíza", "Sentença: dano dobrado em mortos com menos de 35% de vida."],
+  ["cacadora", "Caçadora", "A cada 4 ataques arma uma armadilha no caminho que prende quem passar."],
+  ["bruxa", "Bruxa", "Amaldiçoa: o alvo recebe 30% a mais de dano e fica lento."],
+  ["quimico", "Químico", "Ácido: cada golpe tira 2% da vida máxima do alvo (ótimo contra chefes)."],
+  ["tamborileira", "Tamborileira", "Toca para o time: peças vizinhas causam 15% a mais de dano."],
+  ["barista", "Barista", "Serve café: peças vizinhas atacam mais rápido por alguns segundos."],
+  ["meteorologista", "Meteorologista", "Rajada de vento: empurra para trás o alvo e quem estiver perto."],
+  ["pirotecnico", "Pirotécnico", "Rojão: ataque lento com uma explosão enorme."],
+  ["recompensa", "Caçador de Recompensas", "Dano triplo em chefes e +5 ECO por morto que ele derrota."],
+  ["banqueira", "Banqueira", "Rende juros: no começo de cada onda dá ECO (mais a cada nível)."],
+  ["telegrafista", "Telegrafista", "Mensagem dupla: cada ataque acerta 2 mortos diferentes."],
+  ["chef", "Chef de Cozinha", "Tempero picante: dano em área pequena que deixa os mortos lentos."],
+  ["violinista", "Violinista", "A melodia ricocheteia em 3 mortos e os confunde por um instante."],
+  ["mensageira", "Mensageira", "Entrega expressa: ataques muito rápidos e fracos."],
+  ["adestradora", "Adestradora", "Solta o cão: ele morde o morto mais à frente e o empurra para trás."],
+  ["detetive", "Detetive", "Pista: marca o alvo; todas as peças miram nele com 40% a mais de dano."],
+  ["geologa", "Geóloga", "Tremor: dano em área que atinge até mortos enterrados."],
+  ["marinheira", "Marinheira", "Âncora: golpe pesado que para o alvo e quem estiver logo atrás dele."],
 ];
 const ZOMBIES = [
-  ["guarda_chuva","Homem do Guarda-Chuva","Quando chove, os zumbis próximos ficam mais rápidos."],
-  ["carteiro","O Carteiro","Entrega cartas que curam outros mortos."],
-  ["padre","O Padre","Abençoa os mortos em volta com um escudo."],
-  ["corvos","A Mulher dos Corvos","Voa: não sofre lentidão nem atordoamento."],
-  ["fantasma","O Fantasma","Some e reaparece mais à frente no caminho."],
-  ["sonambula","A Sonâmbula","Dorme e se cura. Ao levar dano, acorda e corre."],
-  ["palhaco","O Palhaço","Ao morrer, solta confete que silencia suas peças."],
-  ["cobrador","O Cobrador","Cobra 6 ECO de você a cada 5 segundos."],
-  ["lobisomem","O Lobisomem","Com metade da vida vira lobo e dispara."],
-  ["seguranca","O Segurança","Armadura que só quebra com muito dano."],
-  ["acougueiro","O Açougueiro","Absorve as partes dos zumbis que morrem perto."],
-  ["maestro","O Maestro","Rege os mortos: andam no ritmo dele."],
-  ["bailarina","A Bailarina","Gira e esquiva de parte dos ataques."],
-  ["garota_telefone","A Garota do Telefone","Liga para outro morto e dividem o dano."],
-  ["afogado","O Afogado","Ao morrer, se divide em dois."],
-  ["enfermeira","A Enfermeira","Cura continuamente os mortos à sua volta."],
-  ["escavador","O Escavador","Se enterra: debaixo da terra ninguém o atinge."],
-  ["elevador","O Homem do Elevador","Teletransporta o grupo inteiro para a frente."],
-  ["locutora","A Locutora","Transmite estática que silencia uma peça."],
-  ["professora","A Professora","Tira lentidão e atordoamento dos mortos."],
-  ["bombeiro","O Bombeiro","À prova de fogo: só 35% do dano de fogo."],
-  ["marionetes","As Marionetes","Bonecos possuídos que chegam em bando."],
-  ["noiva","A Noiva","Chefe. Chama convidados para a festa.",1],
-  ["acougueiro","O Abatedouro","Chefe. Absorve mortos e entra em fúria.",1],
-  ["relojoeiro","O Relojoeiro","Chefe. Para o tempo e congela suas peças.",1],
-  ["prefeito","O Prefeito","Chefe. Faz comício e chama Seguranças.",1],
-  ["voz","A Voz","Chefe final. Silencia colunas inteiras.",1],
+  ["guarda_chuva", "Homem do Guarda-Chuva", "Quando chove, os zumbis próximos ficam mais rápidos."],
+  ["carteiro", "O Carteiro", "Entrega cartas que curam outros mortos."],
+  ["padre", "O Padre", "Abençoa os mortos em volta com um escudo."],
+  ["corvos", "A Mulher dos Corvos", "Voa: não sofre lentidão nem atordoamento."],
+  ["fantasma", "O Fantasma", "Some e reaparece mais à frente no caminho."],
+  ["sonambula", "A Sonâmbula", "Dorme e se cura. Ao levar dano, acorda e corre."],
+  ["palhaco", "O Palhaço", "Ao morrer, solta confete que silencia suas peças."],
+  ["cobrador", "O Cobrador", "Cobra 6 ECO de você a cada 5 segundos."],
+  ["lobisomem", "O Lobisomem", "Com metade da vida vira lobo e dispara."],
+  ["seguranca", "O Segurança", "Armadura que só quebra com muito dano."],
+  ["acougueiro", "O Açougueiro", "Absorve as partes dos zumbis que morrem perto."],
+  ["maestro", "O Maestro", "Rege os mortos: andam no ritmo dele."],
+  ["bailarina", "A Bailarina", "Gira e esquiva de parte dos ataques."],
+  ["garota_telefone", "A Garota do Telefone", "Liga para outro morto e dividem o dano."],
+  ["afogado", "O Afogado", "Ao morrer, se divide em dois."],
+  ["enfermeira", "A Enfermeira", "Cura continuamente os mortos à sua volta."],
+  ["escavador", "O Escavador", "Se enterra: debaixo da terra ninguém o atinge."],
+  ["elevador", "O Homem do Elevador", "Teletransporta o grupo inteiro para a frente."],
+  ["locutora", "A Locutora", "Transmite estática que silencia uma peça."],
+  ["professora", "A Professora", "Tira lentidão e atordoamento dos mortos."],
+  ["bombeiro", "O Bombeiro", "À prova de fogo: só 35% do dano de fogo."],
+  ["marionetes", "As Marionetes", "Bonecos possuídos que chegam em bando."],
+  ["motoboy", "O Motoboy", "Muito rápido e frágil."],
+  ["cachorro", "O Cão Zumbi", "Chega sempre em dupla, correndo."],
+  ["policial", "O Policial", "Apita: os mortos em volta ficam imunes a lentidão por 3 s."],
+  ["mineira", "A Mineira", "Ao morrer, a dinamite silencia a peça mais próxima por 2 s."],
+  ["pescador_z", "O Pescador Zumbi", "Fisga um morto de trás e o puxa para a frente dele."],
+  ["baloeiro", "O Baloeiro", "Voa com balões: ignora lentidão, atordoamento e empurrão."],
+  ["atleta", "O Atleta", "Dá arrancadas: corre o dobro por 1,5 s a cada 5 s."],
+  ["comilao", "O Comilão", "Muita vida e se cura 2% por segundo."],
+  ["mimico", "O Mímico", "Invisível na primeira metade do caminho: ninguém consegue mirar nele."],
+  ["vidraceiro", "O Vidraceiro", "Reflete: quem o acerta tem chance de ficar mudo por um instante."],
+  ["cientista", "O Cientista Louco", "Ao morrer, 2 mortos em volta ganham uma mutação."],
+  ["bibliotecaria", "A Bibliotecária", "Empresta livros: 2 vizinhos levam metade do dano por 3 s."],
+  ["turista", "A Turista", "Tira foto: o flash deixa uma coluna de peças muda por 2 s."],
+  ["hippie", "O Hippie", "Paz e amor: cura devagar os mortos em volta."],
+  ["padrinho", "O Padrinho", "Joga arroz: os mortos em volta andam 20% mais rápido."],
+  ["boliche", "A Jogadora de Boliche", "Strike: ao chegar a 30% do caminho, rola 250 de uma vez para a frente."],
+  ["pirata", "O Pirata", "Se chegar ao fim, também rouba 30 ECO."],
+  ["astronauta", "O Astronauta", "Gravidade zero: imune a atordoar e empurrar."],
+  ["legista", "O Legista", "Autópsia: a cada 8 s levanta um morto que caiu perto dele."],
+  ["faxineira", "A Faxineira", "Faxina: tira lentidão dos mortos em volta e desmonta armadilhas."],
+  ["sorveteiro", "O Sorveteiro", "Picolé: congela a peça mais próxima por 1,5 s a cada 8 s."],
+  ["magico", "O Mágico", "Truque: troca de lugar com o morto mais à frente."],
+  ["espantalho", "O Espantalho", "Provoca: as peças atacam ele primeiro. Muita vida."],
+  ["apicultor", "O Apicultor", "Ao morrer, solta 3 abelhas rápidas."],
+  ["skatista", "A Skatista", "Desliza no skate: ignora lentidão."],
+  ["ventriloquo", "O Ventríloquo", "Leva um boneco: enquanto o boneco existir, o ventríloquo não leva dano."],
+  ["eletricista_z", "O Eletricista Zumbi", "Curto-circuito: ao morrer, uma coluna de peças fica muda por 2 s."],
+  ["vodu", "A Sacerdotisa Vodu", "Maldição: peças que a acertam causam 25% menos dano por 3 s."],
+  ["dancarinos", "Os Dançarinos", "Dançam em par: se um cai, o outro fica furioso e corre."],
+  ["fazendeiro", "O Fazendeiro", "Solta 2 galinhas zumbis a cada 7 s."],
+  ["executivo", "O Executivo", "Muita vida e pressa. Derrotado, vale 40 ECO."],
+  ["rainha_baile", "A Rainha do Baile", "Coroação: os mortos em volta ganham 25% de vida máxima."],
+  ["noiva", "A Noiva", "Chefe. Chama convidados para a festa.", 1],
+  ["acougueiro", "O Abatedouro", "Chefe. Absorve mortos e entra em fúria.", 1],
+  ["relojoeiro", "O Relojoeiro", "Chefe. Para o tempo e congela suas peças.", 1],
+  ["prefeito", "O Prefeito", "Chefe. Faz comício e chama Seguranças.", 1],
+  ["voz", "A Voz", "Chefe final. Silencia colunas inteiras.", 1],
 ];
 function card(kind, [id, name, desc, boss]) {
   const d = document.createElement("div");
