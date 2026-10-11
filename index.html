@@ -234,7 +234,7 @@ footer a { margin: 0 8px; }
     <div class="stats">
       <div class="stat"><div class="num">50</div><span>fases em 10 atos</span></div>
       <div class="stat"><div class="num">40</div><span>investigadores</span></div>
-      <div class="stat"><div class="num">57</div><span>tipos de mortos</span></div>
+      <div class="stat"><div class="num">54</div><span>tipos de mortos</span></div>
       <div class="stat"><div class="num">10</div><span>chefes</span></div>
     </div>
   </div>
@@ -283,7 +283,7 @@ footer a { margin: 0 8px; }
     <h2>Os Mortos</h2>
     <p class="sub">Eles não estão mortos, só esqueceram quem eram. E cada um tem um truque.</p>
     <div class="roster" id="zombies"></div>
-    <div class="more"><button class="btn purple" id="showAll" type="button">Ver todos os 59</button></div>
+    <div class="more"><button class="btn purple" id="showAll" type="button">Ver todos os 64</button></div>
   </div>
 </section>
 
@@ -471,6 +471,11 @@ const ZOMBIES = [
   ["acougueiro", "O Abatedouro", "Chefe. Absorve mortos e entra em fúria.", 1],
   ["relojoeiro", "O Relojoeiro", "Chefe. Para o tempo e congela suas peças.", 1],
   ["prefeito", "O Prefeito", "Chefe. Faz comício e chama Seguranças.", 1],
+  ["diretor", "O Diretor", "Chefe. Toca o sinal: a cada 10 s todos os mortos ganham um escudo.", 1],
+  ["matriarca", "A Matriarca", "Chefe. Com metade da vida, levanta os mortos que caíram perto.", 1],
+  ["condutor", "O Condutor", "Chefe. Expresso: a cada 10 s avança de uma vez levando os mortos em volta.", 1],
+  ["leviata", "O Leviatã", "Chefe. Lento e enorme. Ao cair, se divide em 3 afogados grandes.", 1],
+  ["apresentador", "O Apresentador", "Chefe. Ao vivo: troca duas peças de lugar no tabuleiro e silencia uma coluna.", 1],
   ["voz", "A Voz", "Chefe final. Silencia colunas inteiras.", 1],
 ];
 function card(kind, [id, name, desc, boss]) {
